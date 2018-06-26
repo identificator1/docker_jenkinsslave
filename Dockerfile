@@ -3,18 +3,18 @@ FROM identificator/fastlane
 
 MAINTAINER DG
 
-#ARG user=jenkins
-#ARG group=jenkins
-#ARG uid=1000
-#ARG gid=1000
-#ARG JENKINS_AGENT_HOME=/home/${user}
-ARG JENKINS_AGENT_HOME=/home/root
+ARG user=root
+ARG group=root
+ARG uid=1000
+ARG gid=1000
+ARG JENKINS_AGENT_HOME=/home/${user}
+#ARG JENKINS_AGENT_HOME=/home/root
 
-#ENV JENKINS_AGENT_HOME ${JENKINS_AGENT_HOME}
-ENV JENKINS_AGENT_HOME $JENKINS_AGENT_HOME
+ENV JENKINS_AGENT_HOME ${JENKINS_AGENT_HOME}
+#ENV JENKINS_AGENT_HOME $JENKINS_AGENT_HOME
 
-#RUN groupadd -g ${gid} ${group} \
-#    && useradd -d "${JENKINS_AGENT_HOME}" -u "${uid}" -g "${gid}" -m -s /bin/bash "${user}"
+RUN groupadd -g ${gid} ${group} \
+    && useradd -d "${JENKINS_AGENT_HOME}" -u "${uid}" -g "${gid}" -m -s /bin/bash "${user}"
 
 # setup SSH server
 RUN apt-get update \
